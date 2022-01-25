@@ -1,0 +1,50 @@
+package {{.daoPackageName}}
+
+import (
+    "context"
+    "fmt"
+    "strings"
+    "time"
+
+	"{{.modelFQPN}}"
+
+    "github.com/guregu/null"
+	"github.com/satori/go.uuid"
+)
+
+var (
+    _ = time.Second
+    _ = null.Bool{}
+    _ = uuid.UUID{}
+)
+
+
+/*
+{{ $ddl := .TableInfo.DBMeta.DDL }}
+{{if $ddl }}
+DB Table Details
+-------------------------------------
+{{$ddl}}
+{{- end}}
+
+
+PrimaryKeyNamesList    : {{.PrimaryKeyNamesList}}
+PrimaryKeysJoined      : {{.PrimaryKeysJoined}}
+NonPrimaryKeyNamesList : {{.NonPrimaryKeyNamesList}}
+NonPrimaryKeysJoined   : {{.NonPrimaryKeysJoined}}
+delSql                 : {{.delSql}}
+updateSql              : {{.updateSql}}
+insertSql              : {{.insertSql}}
+selectOneSql           : {{.selectOneSql}}
+selectMultiSql         : {{.selectMultiSql}}
+
+
+*/
+
+{{template "getall" .}}
+{{template "get" .}}
+{{template "add" .}}
+{{template "update" .}}
+{{template "delete" .}}
+
+

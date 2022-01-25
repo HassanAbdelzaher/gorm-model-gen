@@ -1,0 +1,52 @@
+package {{.modelPackageName}}
+
+import (
+    "database/sql"
+    "time"
+
+    "github.com/satori/go.uuid"
+    "github.com/guregu/null"
+)
+
+var (
+    _ = time.Second
+    _ = sql.LevelDefault
+    _ = null.Bool{}
+    _ = uuid.UUID{}
+)
+
+
+ {{if not .Config.AddProtobufAnnotation }}
+
+type {{.TableName}} struct {
+    {{range .TableInfo.Fields}}{{.}}
+    {{end}}
+}
+{{else}}
+
+{{end}}
+
+// TableName sets the insert table name for this struct type
+func ({{.ShortStructName}} *{{.TableName}}) TableName() string {
+	return "{{.TableName}}"
+}
+
+
+
+// BeforeSave invoked before saving, return an error if field is not populated.
+func ({{.ShortStructName}} *{{.TableName}}) BeforeSave() error {
+	return nil
+}
+
+// Prepare invoked before saving, can be used to populate fields etc.
+func ({{.ShortStructName}} *{{.TableName}}) Prepare() {
+}
+
+// Validate invoked before performing action, return an error if field is not populated.
+func ({{.ShortStructName}} *{{.TableName}}) Validate(action Action) error {
+    return nil
+}
+
+func ({{.ShortStructName}} *{{.TableName}}) PrimaryKeys() []string {
+	return nil
+}

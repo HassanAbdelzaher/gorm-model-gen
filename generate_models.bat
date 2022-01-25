@@ -1,0 +1,1 @@
+gen --sqltype=mssql --connstr="server=localhost;database=sadat;user=sa,password=hcs@mas" --table=Test --database=sadat --db --json --overwrite --templateDir=./templates --field_naming={{.camelToLowerCamel}} --json-fmt=none
